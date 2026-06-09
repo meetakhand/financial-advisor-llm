@@ -16,7 +16,6 @@ Every advisory response carries a disclaimer and source/tool citations.
 
 User → Streamlit UI → ReAct Agent (Llama-3.1-8B) → tools (Alpha Vantage + calculators + profile) and RAG (Chroma + BM25 hybrid) → safety wrap → response.
 
-See [`/Users/apratapsingh/.claude/plans/i-am-working-on-snoopy-panda.md`](../../.claude/plans/i-am-working-on-snoopy-panda.md) for the full plan and Mermaid diagram.
 
 ## Quickstart
 
