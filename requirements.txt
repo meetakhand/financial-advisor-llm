@@ -1,0 +1,16 @@
+huggingface_hub>=0.25
+requests>=2.32
+requests-cache>=1.2
+pydantic>=2.8
+pydantic-settings>=2.5
+python-dotenv>=1.0
+chromadb>=0.5
+sentence-transformers>=3.0
+rank-bm25>=0.2.2
+pypdf>=4.3
+streamlit>=1.38
+pandas>=2.2
+plotly>=5.24
+datasets>=2.20
+pytest>=8.3
+pytest-recording>=0.13
