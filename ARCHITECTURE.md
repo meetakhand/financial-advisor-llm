@@ -638,7 +638,7 @@ sequenceDiagram
         P->>P: run_pipeline() (cache miss) → new PipelineResult
         P-->>U: dashboard reflects the change
     else user clicks Discard
-        FC->>FC: append "Discarded" to history; rerun
+        FC->>FC: append "Discarded" to history; 
     end
 ```
 
@@ -737,7 +737,7 @@ sequenceDiagram
         TPL-->>RN: markdown (source="template")
     else LLM available
         RN->>LLM: chat_text(system+CONTEXT, strict rules)
-        alt enforced 2-line output passes (labels + first sentences each; >= 20 chars)
+        alt enforced 2-line output passes (labels + first sentences each;)
             LLM-->>RN: rationale markdown (source="llm")
         else LLM errors / too short
             RN->>TPL: template rationale
