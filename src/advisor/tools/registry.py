@@ -152,6 +152,54 @@ TOOLS: list[dict] = [
     {
         "type": "function",
         "function": {
+            "name": "plan_journey",
+            "description": (
+                "Recompute the full journey plan (projection + success "
+                "probability + funding gap + required SIP) for a given "
+                "risk_band, using the canonical MODEL_ASSUMPTIONS. Prefer "
+                "this over retirement_projection when the customer's goal, "
+                "current savings, and risk_band are known — it mirrors the "
+                "numbers shown on the Dashboard / Recommendations page."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "journey": {
+                        "type": "string",
+                        "enum": ["Retirement Planning", "Child Education", "Buy Home"],
+                    },
+                    "risk_band": {
+                        "type": "string",
+                        "enum": ["Moderate", "Growth", "Aggressive"],
+                        "description": (
+                            "Model band. Sets expected_return / volatility "
+                            "from MODEL_ASSUMPTIONS (Moderate 7.5%, "
+                            "Growth 9.5%, Aggressive 11.5%)."
+                        ),
+                    },
+                    "inputs": {
+                        "type": "object",
+                        "description": (
+                            "Journey-specific inputs. Retirement: "
+                            "current_age, target_retirement_age, "
+                            "desired_monthly_income, current_savings, "
+                            "monthly_contribution. Child Education: "
+                            "child_current_age, target_cost_today, "
+                            "current_savings, monthly_contribution, "
+                            "start_college_age. Buy Home: home_price, "
+                            "down_payment_pct, target_purchase_year, "
+                            "current_year, current_savings, "
+                            "monthly_saving_capacity."
+                        ),
+                    },
+                },
+                "required": ["journey", "risk_band", "inputs"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
             "name": "emergency_fund",
             "description": "Recommended emergency fund target given monthly expenses.",
             "parameters": {
@@ -176,6 +224,7 @@ DISPATCH: dict = {
     "get_sector_performance": lambda: av.get_sector_performance(),
     "get_fx_rate": lambda from_currency, to_currency: av.get_fx_rate(from_currency, to_currency),
     "retirement_projection": calc.retirement_projection,
+    "plan_journey": calc.plan_journey,
     "savings_goal": calc.savings_goal,
     "asset_allocation": calc.asset_allocation,
     "debt_payoff": calc.debt_payoff,

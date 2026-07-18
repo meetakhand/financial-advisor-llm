@@ -1,0 +1,102 @@
+[
+  {
+    "external_id": "sarah-chen",
+    "name": "Sarah Chen",
+    "age": 32,
+    "annual_income": 145000,
+    "dependents": 0,
+    "risk_answers": [2, 2, 2, 2, 3],
+    "primary_goal": "Retirement Planning",
+    "goal_inputs": {
+      "current_age": 32,
+      "target_retirement_age": 62,
+      "desired_monthly_income": 8500,
+      "current_savings": 71000,
+      "monthly_contribution": 2200
+    },
+    "holdings": [
+      {"ticker": "VTI",  "category": "Exchange Traded Fund", "units": 240,   "buy_price": 245.00, "start_date": "2022-03-15"},
+      {"ticker": "CASH", "category": "Fixed Income",         "units": 12000, "buy_price": 1.00,   "start_date": "2022-03-15"}
+    ]
+  },
+  {
+    "external_id": "michael-rodriguez",
+    "name": "Michael Rodriguez",
+    "age": 45,
+    "annual_income": 220000,
+    "dependents": 2,
+    "risk_answers": [3, 3, 3, 3, 3],
+    "primary_goal": "Retirement Planning",
+    "goal_inputs": {
+      "current_age": 45,
+      "target_retirement_age": 62,
+      "desired_monthly_income": 12000,
+      "current_savings": 385000,
+      "monthly_contribution": 3500
+    },
+    "holdings": [
+      {"ticker": "AAPL", "category": "Individual Equity", "units": 1220, "buy_price": 160.50, "start_date": "2018-06-01"}
+    ]
+  },
+  {
+    "external_id": "priya-patel",
+    "name": "Priya Patel",
+    "age": 29,
+    "annual_income": 95000,
+    "dependents": 1,
+    "risk_answers": [1, 2, 1, 2, 1],
+    "primary_goal": "Child Education",
+    "goal_inputs": {
+      "child_current_age": 3,
+      "target_cost_today": 180000,
+      "current_savings": 22000,
+      "monthly_contribution": 700
+    },
+    "holdings": [
+      {"ticker": "VFIAX", "category": "Mutual Fund",   "units": 20,     "buy_price": 620.00, "start_date": "2023-01-10"},
+      {"ticker": "AGG",   "category": "Fixed Income",  "units": 130,    "buy_price": 95.00,  "start_date": "2023-01-10"},
+      {"ticker": "CASH",  "category": "Fixed Income",  "units": 8800,   "buy_price": 1.00,   "start_date": "2023-01-10"}
+    ]
+  },
+  {
+    "external_id": "david-kim",
+    "name": "David Kim",
+    "age": 38,
+    "annual_income": 165000,
+    "dependents": 0,
+    "risk_answers": [1, 1, 1, 1, 0],
+    "primary_goal": "Buy Home",
+    "goal_inputs": {
+      "home_price": 850000,
+      "down_payment_pct": 20,
+      "target_purchase_year": 2029,
+      "current_year": 2026,
+      "current_savings": 95000,
+      "monthly_saving_capacity": 2800
+    },
+    "holdings": [
+      {"ticker": "BND",  "category": "Fixed Income", "units": 900,   "buy_price": 74.00, "start_date": "2024-02-20"},
+      {"ticker": "CASH", "category": "Fixed Income", "units": 32000, "buy_price": 1.00,  "start_date": "2024-02-20"}
+    ]
+  },
+  {
+    "external_id": "emily-nguyen",
+    "name": "Emily Nguyen",
+    "age": 26,
+    "annual_income": 75000,
+    "dependents": 0,
+    "risk_answers": [2, 0, 2, 2, 2],
+    "primary_goal": "Financial Q&A",
+    "goal_inputs": {
+      "target_retirement_age": 65,
+      "desired_monthly_income": 5000,
+      "current_savings": 8000,
+      "monthly_contribution": 600
+    },
+    "holdings": [
+      {"ticker": "VTI",  "category": "Equity",       "units": 25,   "buy_price": 220.00, "start_date": "2024-06-15"},
+      {"ticker": "VXUS", "category": "Equity",       "units": 40,   "buy_price": 58.00,  "start_date": "2024-06-15"},
+      {"ticker": "CASH", "category": "Fixed Income", "units": 3500, "buy_price": 1.00,   "start_date": "2024-06-15"}
+    ]
+  }
+]

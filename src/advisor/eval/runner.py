@@ -4,7 +4,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from advisor.eval import fpb, tasks
+from advisor.eval import fpb
 
 
 def run(task_name: str, n: int = 50, out_dir: Path = Path("data/processed")) -> dict:
@@ -12,11 +12,8 @@ def run(task_name: str, n: int = 50, out_dir: Path = Path("data/processed")) -> 
     if task_name == "fpb":
         result = fpb.run_fpb(n=n)
         path = out_dir / "eval_fpb.json"
-    elif task_name == "custom":
-        result = tasks.run_custom()
-        path = out_dir / "eval_custom.json"
     else:
-        raise ValueError(f"unknown eval task: {task_name}")
+        raise ValueError(f"unknown eval task: {task_name} (only 'fpb' is supported)")
     path.write_text(json.dumps(result, indent=2))
     return {"task": task_name, "out": str(path),
             **({"accuracy": result["accuracy"]} if "accuracy" in result else {}),

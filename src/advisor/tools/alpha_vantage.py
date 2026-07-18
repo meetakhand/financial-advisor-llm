@@ -15,7 +15,7 @@ _CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
 _session = requests_cache.CachedSession(
     str(_CACHE_DIR / "av_cache"),
-    expire_after=60 * 30,  # 30 min for quotes; news has its own short TTL via params
+    expire_after=60 * 60,  # 60 min — widened for mentored-session demo buffer
     allowable_methods=("GET",),
 )
 _BASE = "https://www.alphavantage.co/query"
@@ -30,11 +30,20 @@ def _call(params: dict) -> dict:
     r = _session.get(_BASE, params=params, timeout=20)
     r.raise_for_status()
     data = r.json()
-    if "Note" in data:
-        raise AlphaVantageError(f"AV rate-limited: {data['Note']}")
-    if "Information" in data and "rate limit" in str(data["Information"]).lower():
-        raise AlphaVantageError(f"AV rate-limited: {data['Information']}")
-    if "Error Message" in data:
+    rate_limited = "Note" in data or (
+        "Information" in data and "rate limit" in str(data["Information"]).lower()
+    )
+    if rate_limited or "Error Message" in data:
+        # AV returns HTTP 200 for rate-limit/error responses, so requests-cache would
+        # otherwise store them and poison the cache until TTL. Evict before raising.
+        if getattr(r, "from_cache", False) is False:
+            try:
+                _session.cache.delete(r.cache_key)
+            except Exception:  # noqa: BLE001
+                pass
+        if rate_limited:
+            msg = data.get("Note") or data.get("Information")
+            raise AlphaVantageError(f"AV rate-limited: {msg}")
         raise AlphaVantageError(f"AV error: {data['Error Message']}")
     return data
 

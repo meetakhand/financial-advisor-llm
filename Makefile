@@ -1,4 +1,4 @@
-.PHONY: setup index run eval test clean
+.PHONY: setup index prices prewarm seed run eval test clean
 
 VENV := .venv
 PY := $(VENV)/bin/python
@@ -12,6 +12,15 @@ setup:
 
 index:
 	$(PY) scripts/build_rag_index.py
+
+prices:
+	$(PY) scripts/refresh_prices.py
+
+prewarm:
+	$(PY) scripts/prewarm_cache.py
+
+seed:
+	$(PY) scripts/seed_customers.py
 
 run:
 	$(PY) -m streamlit run app/streamlit_app.py

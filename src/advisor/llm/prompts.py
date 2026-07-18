@@ -44,8 +44,37 @@ def format_persona(profile: dict | None) -> str:
     return "\n".join(parts)
 
 
-def build_system_prompt(profile: dict | None, rag_block: str = "") -> str:
+def format_page_facts(page_facts: dict | None) -> str:
+    """Render page-visible numbers as a labelled block.
+
+    Values are the exact numbers the user is looking at on their current
+    page (projection, success prob, expected return, etc.). The LLM MUST
+    prefer these over its own recomputation when the user asks about
+    "this plan" or "these numbers".
+    """
+    if not page_facts:
+        return ""
+    lines = []
+    for k, v in page_facts.items():
+        if v in (None, "", [], {}):
+            continue
+        lines.append(f"- {k}: {v}")
+    if not lines:
+        return ""
+    return "\n".join(lines)
+
+
+def build_system_prompt(profile: dict | None, rag_block: str = "",
+                          page_facts: dict | None = None) -> str:
     sys = SYSTEM_PROMPT.format(persona_block=format_persona(profile))
+    pf = format_page_facts(page_facts)
+    if pf:
+        sys += (
+            "\n\nPAGE FACTS (exact values the user is looking at right now — "
+            "prefer these over recomputing; when the user says \"this plan\", "
+            "\"my numbers\", or \"the projection\", they mean these):\n"
+            f"{pf}"
+        )
     if rag_block:
         sys += f"\n\nRELEVANT CONTEXT (use if helpful, cite when used):\n{rag_block}"
     return sys
