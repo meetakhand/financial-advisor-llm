@@ -1138,7 +1138,7 @@ sequenceDiagram
     FC-->>U: render "Set up Child Education / Not now" card
 
     alt user clicks "Set up Child Education"
-        FC->>FC: KEY_FA_PENDING_SETUP = "Child Education"; close panel
+        FC->>FC: KEY_FA_PENDING_SETUP = "Child Education";
         FC->>FA: st.switch_page("pages/1_FinAdvisor.py")
         FA->>GS: start("Child Education")
         loop for each required field
